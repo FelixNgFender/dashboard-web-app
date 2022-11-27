@@ -3,33 +3,46 @@ from dash import html, dcc
 import dash_bootstrap_components as dbc # pip install dash-bootstrap-components
 
 # Build your components
-app = dash.Dash(__name__, use_pages=True, external_stylesheets=[dbc.themes.BOOTSTRAP])
-
-# Customize your own Layout
-app.layout = html.Div(
-    [
-        # Framework of the main app
-        html.Div("Schneider Data Analytics", style={'fontSize': 50, 'textAlign':'center'}),
-        html.Div([
-            dcc.Link(children=page['name']+"  |  ", href=page['path'])
-            for page in dash.page_registry.values()
-        ], style={'fontSize': 40, 'textAlign':'center'}),
-        html.Hr(),
-
-        # Content of each page
-        dash.page_container
-    ]
+app = dash.Dash(__name__, use_pages=True, external_stylesheets=[dbc.themes.SPACELAB])
+sidebar = dbc.Nav(
+            [
+                dbc.NavLink(
+                    [
+                        html.Div(page["name"], className="ms-2"),
+                    ],
+                    href=page["path"],
+                    active="exact",
+                )
+                for page in dash.page_registry.values()
+            ],
+            vertical=True,
+            pills=True,
+            className="bg-light",
 )
 
-# # Callback allows components to interact
-# @app.callback(
-#     Output(myText, component_property='children'),
-#     Output(myText, component_property='style'),
-#     Input(myInput, component_property='value'),
-#     Input(myRadio, component_property='value')
-# )
-# def update_title(user_input, radio_input):  # function arguments come from the component property of the Input
-#     return user_input, {'color':radio_input}  # returned objects are assigned to the component property of the Output
+# Customize your own Layout
+app.layout = dbc.Container([
+    dbc.Row([
+        dbc.Col(html.Div("Schneider Data Analytics",
+                         style={'fontSize':50, 'textAlign':'center'}))
+    ]),
+
+    html.Hr(),
+
+    dbc.Row(
+        [
+            dbc.Col(
+                [
+                    sidebar
+                ], xs=4, sm=4, md=2, lg=2, xl=2, xxl=2),
+
+            dbc.Col(
+                [
+                    dash.page_container
+                ], xs=8, sm=8, md=10, lg=10, xl=10, xxl=10)
+        ]
+    )
+], fluid=True)
 
 # Run app
 if __name__ == '__main__':
