@@ -3,7 +3,6 @@ from dash import dcc, html, callback, Output, Input
 import plotly.express as px
 import pandas as pd
 import dash_bootstrap_components as dbc
-import re
 
 dash.register_page(__name__, name="Exploratory Data Analysis")
 
