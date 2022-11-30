@@ -12,18 +12,7 @@ socrata_domain = 'www.dallasopendata.com'
 socrata_dataset_identifier = 'qgg6-h4bd'
 client = Socrata(socrata_domain, app_token="aBmXgmKBnzSwRsuNTpjhjxXiz")
 
-# Pull the data from Socrata API
-# results = client.get(socrata_dataset_identifier)
-# Convert the data into pandas DataFrame
-# df = pd.DataFrame(results)
-
-# df["intake_time"] = pd.to_datetime(df["intake_time"])
-# df["intake_time"] = df["intake_time"].dt.hour
-# df["animal_stay_days"] = df["animal_stay_days"].astype(int)
-# print(df.head())
-# exit()
-
-dash.register_page(__name__, path='/') # '/' is home page
+dash.register_page(__name__, path='/', name = 'API Dashboard') # '/' is home page
 
 layout = html.Div([
     html.P("Choose animal of interest:"),
