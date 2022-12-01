@@ -7,18 +7,6 @@ import pymongo
 from pymongo import MongoClient
 from bson import ObjectId
 
-# Test connection
-# client = pymongo.MongoClient("mongodb+srv://felix1:Toanthinh123.@cluster0.i3qefrx.mongodb.net/?retryWrites=true&w=majority")
-# db = client.test
-# print(db)
-# exit()
-
-# Connect to server
-# client = pymongo.MongoClient("mongodb+srv://felix1:Toanthinh123.@cluster0.i3qefrx.mongodb.net/?retryWrites=true&w=majority")
-# db = client['sample_restaurants']
-# Go into one of the database's collection (table)
-# collection = db['restaurants']
-
 dash.register_page(__name__, name = 'Database Dashboard')
 
 
