@@ -12,6 +12,7 @@ socrata_domain = 'www.dallasopendata.com'
 socrata_dataset_identifier = 'qgg6-h4bd'
 client = Socrata(socrata_domain, app_token="aBmXgmKBnzSwRsuNTpjhjxXiz")
 
+
 dash.register_page(__name__, path='/', name = 'API Dashboard') # '/' is home page
 
 layout = html.Div([

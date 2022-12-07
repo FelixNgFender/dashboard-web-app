@@ -1,9 +1,27 @@
+
 import dash                             # pip install dash
 from dash import html, dcc              
 import dash_bootstrap_components as dbc # pip install dash-bootstrap-components
 
+from flask import Flask, jsonify, request
+
+app = Flask(__name__)
+
+# @app.route('/api')
+# def get_incomes():
+#     print('liem lon')
+#     return '', 205
+
+
+@app.route('/api/posts', methods=['POST'])
+def post_api():
+    if request.method == 'POST':
+        data = request.get_json()
+        # Code to process the received data and store it in the database
+        return jsonify({"message": "Post created successfully"})
+
 # Build your components
-app = dash.Dash(__name__, use_pages=True, external_stylesheets=[dbc.themes.SPACELAB])
+app = dash.Dash(__name__, use_pages=True, external_stylesheets=[dbc.themes.SPACELAB], server=app)
 sidebar = dbc.Nav(
             [
                 dbc.NavLink(
